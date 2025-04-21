@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Control de Propinas - Sahara</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="text-center mb-4">
+      <img src="logo.png" alt="Sahara Men's Club" class="logo">
+    </div>
+
+    <div class="card p-4">
+      <h2 class="text-center mb-4">Control de Propinas</h2>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <input id="mesero" class="form-control" placeholder="Nombre del mesero">
+        </div>
+        <div class="col-md-4">
+          <input id="propina" type="number" step="0.01" class="form-control" placeholder="Propina recibida">
+        </div>
+        <div class="col-md-2 d-grid">
+          <button onclick="agregarPropina()" class="btn btn-primary">Agregar</button>
+          <button onclick="terminarTurno()" class="btn btn-danger mt-2">Terminar Turno</button>
+        </div>
+      </div>
+      <hr>
+      <label for="turnos">Ver Turno:</label>
+      <select id="turnos" onchange="mostrarTurno()"></select>
+      <button class="btn btn-secondary" onclick="exportarCSV()">Exportar CSV</button>
+      <div class="table-responsive mt-3">
+        <table class="table table-dark table-hover text-center align-middle">
+          <thead>
+            <tr>
+              <th>Mesero</th>
+              <th>Total</th>
+              <th>Mesero (40%)</th>
+              <th>Staff (60%)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyResumen"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"><strong>Total Staff</strong></td>
+              <td id="totalStaff">$0.00</td>
+            </tr>
+            <tr>
+              <td colspan="3"><strong>Casa (redondeo)</strong></td>
+              <td id="totalCasa">$0.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
