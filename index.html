@@ -55,6 +55,52 @@
       </div>
     </div>
   </div>
+  <div class="card mt-4 p-4">
+  <h4 class="mb-3">Subir Archivos (Firebase)</h4>
+  <input type="file" id="archivoInput" class="form-control mb-2" />
+  <button class="btn btn-warning" onclick="subirArchivo()">Subir</button>
+  <div id="enlace" class="mt-3"></div>
+  </div>
   <script src="script.js"></script>
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB9MHEqhrI15W6617faksvQEeJG7Xa530o",
+    authDomain: "saharatips-80435.firebaseapp.com",
+    projectId: "saharatips-80435",
+    storageBucket: "saharatips-80435.appspot.com",
+    messagingSenderId: "502294849880",
+    appId: "1:502294849880:web:0831f470e8527ad7191d2d",
+    measurementId: "G-4PBNCNLM9B"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const storage = firebase.storage();
+
+  function subirArchivo() {
+    const archivo = document.getElementById('archivoInput').files[0];
+    if (!archivo) {
+      alert("Selecciona un archivo.");
+      return;
+    }
+
+    const storageRef = storage.ref('archivos/' + archivo.name);
+    storageRef.put(archivo)
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then(url => {
+        document.getElementById('enlace').innerHTML = `
+          <div class="alert alert-success">
+            Archivo subido:<br>
+            <a href="${url}" target="_blank">${url}</a>
+          </div>`;
+      })
+      .catch(error => {
+        document.getElementById('enlace').innerHTML = `
+          <div class="alert alert-danger">Error: ${error.message}</div>`;
+      });
+  }
+</script>
 </body>
 </html>
