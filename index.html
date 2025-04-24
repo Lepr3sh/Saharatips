@@ -1,107 +1,120 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+
+<html lang="es" data-bs-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <title>Control de Propinas - Sahara</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="estilos.css">
+  <title>Menú Interactivo VIP · Sahara Mens Club</title>
+  <!-- Bootstrap 5.3.0 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Montserrat:wght@400;600&display=swap');
+    :root {
+      --smc-purple: #38183f;
+      --smc-gold: #ffa600;
+      --smc-bg: var(--smc-purple);
+      --smc-card-bg: rgba(56, 24, 63, 0.85);
+      --smc-text: #f5e8c7;
+    }
+    body { background: var(--smc-bg); color: var(--smc-text); font-family: 'Montserrat', sans-serif; }
+    .navbar-brand { font-family: 'Oswald', sans-serif; font-size: 2rem; color: var(--smc-gold) !important; }
+    .filter-btns .btn { border: 2px solid var(--smc-gold); color: var(--smc-gold); font-family: 'Oswald', sans-serif; transition: .3s; }
+    .filter-btns .btn:hover, .filter-btns .btn.active { background: var(--smc-gold); color: var(--smc-purple); }
+    /* VIP button glow */
+    .btn-vip { animation: vipGlow 2s ease-in-out infinite alternate; }
+    @keyframes vipGlow { from{box-shadow:0 0 10px var(--smc-gold);} to{box-shadow:0 0 20px var(--smc-gold),0 0 30px var(--smc-gold);} }
+    section { display: none; animation: fadeInSec .5s ease forwards; margin-bottom:2rem; }
+    @keyframes fadeInSec { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+    table { background: var(--smc-card-bg); border:none; opacity:0; animation: fadeInTable .7s ease forwards; }
+    @keyframes fadeInTable { from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);} }
+    thead { border-bottom:2px solid var(--smc-gold);} th { color: var(--smc-gold);} .table-hover tbody tr:hover{background:rgba(255,166,0,0.1);}
+  </style>
 </head>
 <body>
-  <div class="container mt-4">
-    <div class="text-center mb-4">
-      <img src="logo.png" alt="Sahara Men's Club" class="logo">
-    </div>
-
-    <div class="card p-4">
-      <h2 class="text-center mb-4">Control de Propinas</h2>
-      <div class="row g-3 mb-4">
-        <div class="col-md-6">
-          <input id="mesero" class="form-control" placeholder="Nombre del mesero">
-        </div>
-        <div class="col-md-4">
-          <input id="propina" type="number" step="0.01" class="form-control" placeholder="Propina recibida">
-        </div>
-        <div class="col-md-2 d-grid">
-          <button onclick="agregarPropina()" class="btn btn-primary">Agregar</button>
-          <button onclick="terminarTurno()" class="btn btn-danger mt-2">Terminar Turno</button>
-        </div>
-      </div>
-      <hr>
-      <label for="turnos">Ver Turno:</label>
-      <select id="turnos" onchange="mostrarTurno()"></select>
-      <button class="btn btn-secondary" onclick="exportarCSV()">Exportar CSV</button>
-      <div class="table-responsive mt-3">
-        <table class="table table-dark table-hover text-center align-middle">
-          <thead>
-            <tr>
-              <th>Mesero</th>
-              <th>Total</th>
-              <th>Mesero (40%)</th>
-              <th>Staff (60%)</th>
-            </tr>
-          </thead>
-          <tbody id="tbodyResumen"></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3"><strong>Total Staff</strong></td>
-              <td id="totalStaff">$0.00</td>
-            </tr>
-            <tr>
-             <!-- td colspan="3"><strong>Casa (redondeo)</strong></td>
-              <td id="totalCasa">$0.00</td>-->
-            </tr>
-          </tfoot>
+<nav class="navbar navbar-dark bg-transparent py-3"><div class="container justify-content-center"><span class="navbar-brand">Sahara Mens Club</span></div></nav>
+<div class="container py-5">
+  <div class="d-flex flex-wrap gap-2 justify-content-center mb-5 filter-btns">
+    <button class="btn active" data-filter="all"><i class="bi bi-grid-fill"></i> Todo</button>
+    <button class="btn" data-filter="cocteleria"><i class="bi bi-cup-straw"></i> Coctelería</button>
+    <button class="btn" data-filter="varios"><i class="bi bi-box-seam"></i> Varios</button>
+    <button class="btn" data-filter="whisky"><i class="bi bi-droplet-half"></i> Whisky</button>
+    <button class="btn" data-filter="ron"><i class="bi bi-egg-fried"></i> Ron</button>
+    <button class="btn" data-filter="cognac"><i class="bi bi-glass"></i> Cognac</button>
+    <button class="btn" data-filter="licores"><i class="bi bi-basket"></i> Licores</button>
+    <button class="btn" data-filter="ginebra"><i class="bi bi-flower1"></i> Ginebra</button>
+    <button class="btn" data-filter="tequila"><i class="bi bi-fire"></i> Tequila</button>
+    <button class="btn" data-filter="cerveza"><i class="bi bi-bucket"></i> Cerveza</button>
+    <button class="btn" data-filter="vodka"><i class="bi bi-snow"></i> Vodka</button>
+    <button class="btn" data-filter="mezcal"><i class="bi bi-smoke"></i> Mezcal</button>
+    <button class="btn btn-vip" data-filter="vip"><i class="bi bi-star-fill"></i> Experiencia VIP</button>
+  </div>
+  <div id="menu-sections">
+    <!-- Coctelería -->
+    <section data-filter="cocteleria"><h2>Coctelería</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Coctel</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>ABC</td><td>Copa</td><td>$150</td><td>$105</td></tr><tr><td>Cielo Rojo</td><td>Copa</td><td>NA</td><td>$200</td></tr><tr><td>Long Island</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Margarita</td><td>Copa</td><td>$115</td><td>NA</td></tr><tr><td>Piña Colada</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Rey Alfonso</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Blanco</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Negro</td><td>Copa</td><td>NA</td><td>$140</td></tr></tbody></table></div></section>
+    <!-- Varios -->
+    <section data-filter="varios"><h2>Varios</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Item</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Agua</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Boost</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Cigarros</td><td>—</td><td>NA</td><td>NA</td></tr><tr><td>Clamato</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Jarra de Jugo</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Michelada</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>RedBull</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Refresco</td><td>Botella</td><td>NA</td><td>NA</td></tr></tbody></table></div></section>
+    <!-- Whisky -->
+    <section data-filter="whisky"><h2>Whisky</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Buchanans 12</td><td>750ML</td><td>$195</td><td>$1,950</td></tr><tr><td>Buchanans 16</td><td>750ML</td><td>$425</td><td>$4,250</td></tr><tr><td>Chivas Regal</td><td>750ML</td><td>$185</td><td>$1,850</td></tr><tr><td>Etiqueta Roja</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Etiqueta Negra</td><td>750ML</td><td>$195</td><td>$1,950</td></tr><tr><td>Etiqueta Azul</td><td>750ML</td><td>$825</td><td>$8,250</td></tr><tr><td>Jack Daniels</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Macallan 12</td><td>700ML</td><td>$345</td><td>$3,450</td></tr><tr><td>Tom Lawson’s</td><td>750ML</td><td>$130</td><td>$1,300</td></tr></tbody></table></div></section>
+    <!-- Ron -->
+    <section data-filter="ron"><h2>Ron</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Appleton State</td><td>750ML</td><td>$115</td><td>$1,150</td></tr><tr><td>Bacardi Añejo</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Bacardi Blanco</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Bacardi Solera</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Capitán Morgan</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Havana 3 Años</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Havana 7 Años</td><td>750ML</td><td>$415</td><td>$1,450</td></tr><tr><td>Malibu Blanco</td><td>750ML</td><td>$125</td><td>$1,250</td></tr></tbody></table></div></section>
+    <!-- Cognac -->
+    <section data-filter="cognac"><h2>Cognac</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Martell VSOP</td><td>700ML</td><td>$230</td><td>$2,300</td></tr><tr><td>Hennessy VSOP</td><td>700ML</td><td>$230</td><td>$2,300</td></tr></tbody></table></div></section>
+    <!-- Licores -->
+    <section data-filter="licores"><h2>Licores</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Licor</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Amaretto</td><td>—</td><td>$175</td><td>NA</td></tr><tr><td>Anís Dulce</td><td>—</td><td>$100</td><td>NA</td></tr><tr><td>Baileys</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Jägermeister</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Kahlúa</td><td>—</td><td>$165</td><td>NA</td></tr><tr><td>Licor 43</td><td>—</td><td>$165</td><td>NA</td></tr><tr><td>Sambuca</td><td>700ML</td><td>$230</td><td>$1,300</td></tr></tbody></table></div></section>
+    <!-- Ginebra -->
+    <section data-filter="ginebra"><h2>Ginebra</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Beefeater</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Tanquerey</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Bombay</td><td>750ML</td><td>$165</td><td>$1,650</td></tr></tbody></table></div></section>
+    <!-- Tequila -->
+    <section data-filter="tequila"><h2>Tequila</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>1800 Añejo</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>1800 Cristalino</td><td>700ML</td><td>$175</td><td>$1,750</td></tr><tr><td>1800 Reposado</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Centenario Reposado</td><td>700ML</td><td>$115</td><td>$1,450</td></tr><tr><td>Centenario Plata</td><td>700ML</td><td>$255</td><td>$2,550</td></tr><tr><td>Don Julio 70</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Don Julio Blanco</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Don Julio Reposado</td><td>700ML</td><td>$175</td><td>$1,750</td></tr><tr><td>Herradura Añejo</td><td>700ML</td><td>$155</td><td>$1,550</td></tr><tr><td>Herradura Antiguo</td><td>700ML</td><td>$155</td><td>$1,550</td></tr><tr><td>Herradura Reposado</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Maestro Dobel</td><td>750ML</td><td>$155</td><td>$1,550</td></tr><tr><td>Siete Leguas Tradicional</td><td>695ML</td><td>$115</td><td>$1,150</td></tr></tbody></table></div></section>
+    <!-- Cerveza -->
+    <section data-filter="cerveza"><h2>Cerveza</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Corona 1/2</td><td>355ML</td><td>$75</td><td>NA</td></tr><tr><td>Pacífico 1/2</td><td>355ML</td><td>$75</td><td>NA</td></tr><tr><td>Corona Light</td><td>355ML</td><td>$90</td><td>NA</td></tr><tr><td>Modelo Especial</td><td>355ML</td><td>$90</td><td>NA</td></tr><tr><td>Michelob Ultra</td><td>355ML</td><td>$90</td><td>NA</td></tr><tr><td>Cubeta 6 Corona 1/2</td><td>6×355ML</td><td>$375</td><td>NA</td></tr><tr><td>Cubeta 6 Corona Light</td><td>6×355ML</td><td>$450</td><td>NA</td></tr><tr><td>Cubeta 6 Modelo Especial</td><td>6×355ML</td><td>$450</td><td>NA</td></tr></tbody></table></div></section>
+    <!-- Vodka -->
+    <section data-filter="vodka"><h2>Vodka</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Absolut Azul</td><td>750ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Grey Goose</td><td>750ML</td><td>$200</td><td>NA</td></tr><tr><td>Smirnoff</td><td>750ML</td><td>$145</td><td>$1,150</td></tr><tr><td>Stolichnaya</td><td>750ML</td><td>$145</td><td>$1,450</td></tr></tbody></table></div></section>
+    <!-- Mezcal -->
+    <section data-filter="mezcal"><h2>Mezcal</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Mezcal Unión</td><td>700ML</td><td>$200</td><td>$2,000</td></tr></tbody></table></div></section>
+    <!-- Experiencia VIP full-width -->
+    <section data-filter="vip" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; background:var(--smc-card-bg); padding:2rem;">
+      <h2 class="text-center">Experiencia VIP</h2>
+      <div class="table-responsive">
+        <table class="table table-dark table-striped table-hover w-100">
+          <thead><tr><th>Servicio</th><th>Detalle</th><th>Precio</th></tr></thead>
+          <tbody>
+            <tr><td>Private Champagne Room</td><td>30 min + botella Moët &amp; Chandon</td><td>$6,500.00</td></tr>
+            <tr><td>Champagne Bottle</td><td>Veuve Clicquot 750ml</td><td>$3,500.00</td></tr>
+            <tr><td>Baile Privado</td><td>15 min con bailarina</td><td>$3,000.00</td></tr>
+            <tr><td>Meet &amp; Greet</td><td>10 min foto y saludo</td><td>$1,500.00</td></tr>
+            <tr><td>Copa Premium</td><td>Vodka Grey Goose</td><td>$200.00</td></tr>
+          </tbody>
         </table>
       </div>
-    </div>
+    </section>
   </div>
-<!--  <div class="card mt-4 p-4">
-  <h4 class="mb-3">Subir Archivos (Firebase)</h4>
-  <input type="file" id="archivoInput" class="form-control mb-2" />
-  <button class="btn btn-warning" onclick="subirArchivo()">Subir</button>
-  <div id="enlace" class="mt-3"></div>
-  </div>
-  <script src="script.js"></script>
-  <!-- Firebase SDK 
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9MHEqhrI15W6617faksvQEeJG7Xa530o",
-    authDomain: "saharatips-80435.firebaseapp.com",
-    projectId: "saharatips-80435",
-    storageBucket: "saharatips-80435.appspot.com",
-    messagingSenderId: "502294849880",
-    appId: "1:502294849880:web:0831f470e8527ad7191d2d",
-    measurementId: "G-4PBNCNLM9B"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const storage = firebase.storage();
-
-  function subirArchivo() {
-    const archivo = document.getElementById('archivoInput').files[0];
-    if (!archivo) {
-      alert("Selecciona un archivo.");
-      return;
-    }
-
-    const storageRef = storage.ref('archivos/' + archivo.name);
-    storageRef.put(archivo)
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        document.getElementById('enlace').innerHTML = `
-          <div class="alert alert-success">
-            Archivo subido:<br>
-            <a href="${url}" target="_blank">${url}</a>
-          </div>`;
-      })
-      .catch(error => {
-        document.getElementById('enlace').innerHTML = `
-          <div class="alert alert-danger">Error: ${error.message}</div>`;
+  document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({ once: true, duration: 600 });
+    const buttons = document.querySelectorAll('.filter-btns .btn');
+    const sections = document.querySelectorAll('#menu-sections section');
+    sections.forEach(sec => sec.style.display = 'none');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      sections.forEach(sec => {
+        if (f === 'all' || sec.dataset.filter === f) {
+          sec.style.display = 'block';
+          sec.querySelector('table').style.animation = 'fadeInTable 0.7s ease forwards';
+        } else {
+          sec.style.display = 'none';
+        }
       });
-  }-->
-  <script src="script.js"></script>
+    }));
+  });
 </script>
 </body>
 </html>
