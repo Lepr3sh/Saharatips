@@ -76,23 +76,45 @@
     <!-- Mezcal -->
     <section data-filter="mezcal"><h2>Mezcal</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Mezcal Unión</td><td>700ML</td><td>$200</td><td>$2,000</td></tr></tbody></table></div></section>
     <!-- Experiencia VIP full-width -->
-    <section data-filter="vip" style="width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; background:var(--smc-card-bg); padding:2rem;">
-      <h2 class="text-center">Experiencia VIP</h2>
-      <div class="table-responsive">
-        <table class="table table-dark table-striped table-hover w-100">
-          <thead><tr><th>Servicio</th><th>Detalle</th><th>Precio</th></tr></thead>
-          <tbody>
-            <tr><td>Private Champagne Room</td><td>30 min + botella Moët &amp; Chandon</td><td>$6,500.00</td></tr>
-            <tr><td>Champagne Bottle</td><td>Veuve Clicquot 750ml</td><td>$3,500.00</td></tr>
-            <tr><td>Baile Privado</td><td>15 min con bailarina</td><td>$3,000.00</td></tr>
-            <tr><td>Meet &amp; Greet</td><td>10 min foto y saludo</td><td>$1,500.00</td></tr>
-            <tr><td>Copa Premium</td><td>Vodka Grey Goose</td><td>$200.00</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <<!-- Experiencia VIP (full‑width, fondo distinto y animación spawn) -->
+<section id="vip-section"
+         data-filter="vip"
+         style="width:100vw;position:relative;left:50%;margin-left:-50vw;
+                background:#2d0f31;padding:2rem 1rem;overflow:hidden;">
+  <h2 class="text-center">Experiencia VIP</h2>
+
+  <!-- tabla con animación spawn -->
+  <div class="table-responsive">
+    <table class="table vip-table w-100 text-center"
+           style="transform:scale(0) rotate(-5deg);animation:spawn 0.7s ease-out forwards;">
+      <thead>
+        <tr><th>Servicio</th><th>Volumen</th><th>Precio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Copa Champagne</td><td>180 ml</td><td>$320</td></tr>
+        <tr><td>Copa Rubí</td><td>300 ml</td><td>$380</td></tr>
+        <tr><td>Copa Amatista</td><td>400 ml</td><td>$410</td></tr>
+        <tr><td>Jarra Imperial</td><td>1 000 ml</td><td>$1 450</td></tr>
+        <tr><td>Bot. Champagne Arbor</td><td>750 ml</td><td>$2 800</td></tr>
+        <tr><td>Bot. Champagne Asti</td><td>750 ml</td><td>$3 300</td></tr>
+        <tr><td>Bot. Champagne Clásica</td><td>750 ml</td><td>$3 800</td></tr>
+        <tr><td>Bot. Champagne Rosé</td><td>750 ml</td><td>$5 000</td></tr>
+        <tr><td>Bot. Champagne Diamante</td><td>750 ml</td><td>$5 750</td></tr>
+        <tr><td>Bot. Champagne Imperial Brut</td><td>750 ml</td><td>$6 750</td></tr>
+        <tr><td>Bot. Champagne Imperial Rosé</td><td>750 ml</td><td>$8 750</td></tr>
+      </tbody>
+    </table>
   </div>
-</div>
+</section>
+
+<!-- Animación spawn (colócala en tu <style> global si aún no está) -->
+<style>
+@keyframes spawn {
+  0%   { transform: scale(0)   rotate(-5deg); opacity:0; }
+  60%  { transform: scale(1.05) rotate(3deg); opacity:1; }
+  100% { transform: scale(1)   rotate(0deg); }
+}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
