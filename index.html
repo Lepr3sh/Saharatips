@@ -44,6 +44,13 @@
     padding: 5px 0;
     transform: none;
   }
+  .footer-icon {
+  transition: color 0.3s ease;
+}
+
+.footer-icon:hover {
+  color: #f8c146; /* Puedes ajustar este color dorado si deseas otro tono */
+}
 }
     body { background: var(--smc-bg); color: var(--smc-text); font-family: 'Montserrat', sans-serif; }
     .navbar-brand { font-family: 'Oswald', sans-serif; font-size: 2rem; color: var(--smc-gold) !important; }
@@ -83,7 +90,7 @@
     <!-- Coctelería -->
     <section data-filter="cocteleria"><h2>Coctelería</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Coctel</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>ABC</td><td>Copa</td><td>$150</td><td>$105</td></tr><tr><td>Cielo Rojo</td><td>Copa</td><td>NA</td><td>$200</td></tr><tr><td>Long Island</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Margarita</td><td>Copa</td><td>$115</td><td>NA</td></tr><tr><td>Piña Colada</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Rey Alfonso</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Blanco</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Negro</td><td>Copa</td><td>NA</td><td>$140</td></tr></tbody></table></div></section>
     <!-- Varios -->
-    <section data-filter="varios"><h2>Varios</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Item</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Agua</td><td>Botella</td><td>$55</td><td>NA</td></tr><tr><td>Boost</td><td>Botella</td><td>$90</td><td>NA</td></tr><tr><td>Cigarros</td><td>—</td><td>$105</td><td>NA</td></tr><tr><td>Clamato</td><td>Botella</td><td>$70</td><td>NA</td></tr><tr><td>Jarra de Jugo</td><td>Botella</td><td>$350</td><td>NA</td></tr><tr><td>Michelada</td><td>Botella</td><td>NA</td><td>$90</td></tr><tr><td>RedBull</td><td>Botella</td><td>$90</td><td>NA</td></tr><tr><td>Refresco</td><td>Botella</td><td>NA</td><td>$55</td></tr></tbody></table></div></section>
+    <section data-filter="varios"><h2>Varios</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Item</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Agua</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Boost</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Cigarros</td><td>—</td><td>NA</td><td>NA</td></tr><tr><td>Clamato</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Jarra de Jugo</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Michelada</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>RedBull</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Refresco</td><td>Botella</td><td>NA</td><td>NA</td></tr></tbody></table></div></section>
     <!-- Whisky -->
     <section data-filter="whisky"><h2>Whisky</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Buchanans 12</td><td>750ML</td><td>$195</td><td>$1,950</td></tr><tr><td>Buchanans 16</td><td>750ML</td><td>$425</td><td>$4,250</td></tr><tr><td>Chivas Regal</td><td>750ML</td><td>$185</td><td>$1,850</td></tr><tr><td>Etiqueta Roja</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Etiqueta Negra</td><td>750ML</td><td>$195</td><td>$1,950</td></tr><tr><td>Etiqueta Azul</td><td>750ML</td><td>$825</td><td>$8,250</td></tr><tr><td>Jack Daniels</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Macallan 12</td><td>700ML</td><td>$345</td><td>$3,450</td></tr><tr><td>Tom Lawson’s</td><td>750ML</td><td>$130</td><td>$1,300</td></tr></tbody></table></div></section>
     <!-- Ron -->
@@ -134,4 +141,21 @@
   });
 </script>
 </body>
+<footer class="text-light text-center py-4 mt-5" style="font-size: 0.9rem; background-color: rgba(0.4, 0, 0, 0.8);">
+  <div class="container">
+    <div class="mb-3">
+      <a href="https://wa.me/523221029028?text=Me%20gustaría%20reservar%20en%20Sahara" class="text-light me-3 footer-icon" target="_blank">
+        <i class="bi bi-whatsapp" style="font-size: 1.5rem;"></i>
+      </a>
+      <a href="https://www.instagram.com/sahara.mensclub?igsh=ZGJjOTlpdDFwaTdn" class="text-light me-3 footer-icon" target="_blank">
+        <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+      </a>
+      <a href="https://www.facebook.com/share/15xFpcKhUP/" class="text-light footer-icon" target="_blank">
+        <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
+      </a>
+    </div>
+    <p class="mb-1">© 2025 MDV Corporation. Todos los derechos reservados.</p>
+    <p class="mb-1">El contenido de este sitio es confidencial y está destinado exclusivamente para uso interno.</p>
+  </div>
+</footer>
 </html>
