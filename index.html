@@ -12,6 +12,7 @@
   <!-- AOS Animations -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
+  
     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Montserrat:wght@400;600&display=swap');
     :root {
       --smc-purple: #38183f;
@@ -20,6 +21,30 @@
       --smc-card-bg: rgba(56, 24, 63, 0.85);
       --smc-text: #f5e8c7;
     }
+#animated-logo {
+  position: fixed;
+  width: 150px;
+  z-index: 999;
+  animation: moveAround 8s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes moveAround {
+  0%   { top: 30%; left: 5%; }
+  25%  { top: 10%; left: 70%; }
+  50%  { top: 70%; left: 60%; }
+  75%  { top: 60%; left: 10%; }
+  100% {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px 0;
+    transform: none;
+  }
+}
     body { background: var(--smc-bg); color: var(--smc-text); font-family: 'Montserrat', sans-serif; }
     .navbar-brand { font-family: 'Oswald', sans-serif; font-size: 2rem; color: var(--smc-gold) !important; }
     .filter-btns .btn { border: 2px solid var(--smc-gold); color: var(--smc-gold); font-family: 'Oswald', sans-serif; transition: .3s; }
@@ -32,10 +57,13 @@
     table { background: var(--smc-card-bg); border:none; opacity:0; animation: fadeInTable .7s ease forwards; }
     @keyframes fadeInTable { from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);} }
     thead { border-bottom:2px solid var(--smc-gold);} th { color: var(--smc-gold);} .table-hover tbody tr:hover{background:rgba(255,166,0,0.1);}
+
   </style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-transparent py-3"><div class="container justify-content-center"><span class="navbar-brand">Sahara Mens Club</span></div></nav>
+    <img src="logo.png" id="animated-logo" alt="Sahara Logo">
+<!--<nav class="navbar navbar-dark bg-transparent py-3"><div class="container justify-content-center"><span class="navbar-brand">Sahara Mens Club</span></div>-->
+
 <div class="container py-5">
   <div class="d-flex flex-wrap gap-2 justify-content-center mb-5 filter-btns">
     <button class="btn active" data-filter="all"><i class="bi bi-grid-fill"></i> Todo</button>
@@ -49,9 +77,8 @@
     <button class="btn" data-filter="tequila"><i class="bi bi-fire"></i> Tequila</button>
     <button class="btn" data-filter="cerveza"><i class="bi bi-bucket"></i> Cerveza</button>
     <button class="btn" data-filter="vodka"><i class="bi bi-snow"></i> Vodka</button>
-    <button class="btn" data-filter="mezcal"><i class="bi bi-smoke"></i> Mezcal</button>
-    <button class="btn btn-vip" data-filter="vip"><i class="bi bi-star-fill"></i> Experiencia VIP</button>
-  </div>
+    <button class="btn" data-filter="mezcal"><i class="bi bi-smoke"></i> Mezcal</button></div>
+
   <div id="menu-sections">
     <!-- Coctelería -->
     <section data-filter="cocteleria"><h2>Coctelería</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Coctel</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>ABC</td><td>Copa</td><td>$150</td><td>$105</td></tr><tr><td>Cielo Rojo</td><td>Copa</td><td>NA</td><td>$200</td></tr><tr><td>Long Island</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Margarita</td><td>Copa</td><td>$115</td><td>NA</td></tr><tr><td>Piña Colada</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Rey Alfonso</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Blanco</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Negro</td><td>Copa</td><td>NA</td><td>$140</td></tr></tbody></table></div></section>
@@ -75,8 +102,6 @@
     <section data-filter="vodka"><h2>Vodka</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Absolut Azul</td><td>750ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Grey Goose</td><td>750ML</td><td>$200</td><td>NA</td></tr><tr><td>Smirnoff</td><td>750ML</td><td>$145</td><td>$1,150</td></tr><tr><td>Stolichnaya</td><td>750ML</td><td>$145</td><td>$1,450</td></tr></tbody></table></div></section>
     <!-- Mezcal -->
     <section data-filter="mezcal"><h2>Mezcal</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Mezcal Unión</td><td>700ML</td><td>$200</td><td>$2,000</td></tr></tbody></table></div></section>
-    
-
 <!-- Animación spawn (colócala en tu <style> global si aún no está) -->
 <style>
 @keyframes spawn {
