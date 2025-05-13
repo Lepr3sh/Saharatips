@@ -1,161 +1,890 @@
-<!doctype html>
-
-<html lang="es" data-bs-theme="dark">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Menú Interactivo VIP · Sahara Mens Club</title>
-  <!-- Bootstrap 5.3.0 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- AOS Animations -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <style>
-  
-    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Montserrat:wght@400;600&display=swap');
-    :root {
-      --smc-purple: #38183f;
-      --smc-gold: #ffa600;
-      --smc-bg: var(--smc-purple);
-      --smc-card-bg: rgba(56, 24, 63, 0.85);
-      --smc-text: #f5e8c7;
-    }
-#animated-logo {
-  position: fixed;
-  width: 150px;
-  z-index: 999;
-  animation: moveAround 8s linear forwards;
-  pointer-events: none;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP SCORTS PV | Elite Experience</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --black: #000000;
+            --platinum: #e5e4e2;
+            --ruby: #e0115f;
+        }
 
-@keyframes moveAround {
-  0%   { top: 30%; left: 5%; }
-  25%  { top: 10%; left: 70%; }
-  50%  { top: 70%; left: 60%; }
-  75%  { top: 60%; left: 10%; }
-  100% {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    object-fit: contain;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 5px 0;
-    transform: none;
-  }
-  .footer-icon {
-  transition: color 0.3s ease;
-}
+        /* Fondo animado de partículas doradas */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--black);
+            color: var(--platinum);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
 
-.footer-icon:hover {
-  color: #f8c146; /* Puedes ajustar este color dorado si deseas otro tono */
-}
-}
-    body { background: var(--smc-bg); color: var(--smc-text); font-family: 'Montserrat', sans-serif; }
-    .navbar-brand { font-family: 'Oswald', sans-serif; font-size: 2rem; color: var(--smc-gold) !important; }
-    .filter-btns .btn { border: 2px solid var(--smc-gold); color: var(--smc-gold); font-family: 'Oswald', sans-serif; transition: .3s; }
-    .filter-btns .btn:hover, .filter-btns .btn.active { background: var(--smc-gold); color: var(--smc-purple); }
-    /* VIP button glow */
-    .btn-vip { animation: vipGlow 2s ease-in-out infinite alternate; }
-    @keyframes vipGlow { from{box-shadow:0 0 10px var(--smc-gold);} to{box-shadow:0 0 20px var(--smc-gold),0 0 30px var(--smc-gold);} }
-    section { display: none; animation: fadeInSec .5s ease forwards; margin-bottom:2rem; }
-    @keyframes fadeInSec { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
-    table { background: var(--smc-card-bg); border:none; opacity:0; animation: fadeInTable .7s ease forwards; }
-    @keyframes fadeInTable { from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);} }
-    thead { border-bottom:2px solid var(--smc-gold);} th { color: var(--smc-gold);} .table-hover tbody tr:hover{background:rgba(255,166,0,0.1);}
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-  </style>
+        /* Mega título VIP */
+        .vip-title {
+            font-size: 8vw;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--gold), var(--platinum));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 5px;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        /* Carrusel Élite */
+        .elite-carousel {
+            height: 100vh;
+            position: relative;
+        }
+
+        .carousel-item {
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .carousel-caption {
+            bottom: 25%;
+            text-align: left;
+            left: 10%;
+            right: auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-left: 5px solid var(--gold);
+            border-radius: 0 15px 15px 0;
+        }
+
+        .model-name {
+            font-size: 3rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .model-desc {
+            font-size: 1.2rem;
+            max-width: 500px;
+        }
+
+        /* Lightbox personalizado */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Navbar VIP */
+        .vip-nav {
+            background: rgba(0, 0, 0, 0.5) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .nav-link {
+            color: var(--platinum) !important;
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        /* Sección Shop */
+        .shop-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* Cards de producto */
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+            border-color: var(--gold);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--ruby);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Formulario de reserva */
+        .booking-form {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            color: white;
+        }
+
+        /* Verificación de edad */
+        .age-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .age-title {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .age-btn {
+            margin: 15px;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .age-confirm {
+            background: var(--gold);
+            color: black;
+        }
+
+        .age-exit {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        /* Efectos personalizados */
+        .gold-hover:hover {
+            color: var(--gold) !important;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: black;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .vip-title {
+                font-size: 15vw;
+            }
+            
+            .carousel-caption {
+                bottom: 15%;
+                left: 5%;
+                right: 5%;
+                padding: 20px;
+            }
+            
+            .model-name {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <img src="logo.png" id="animated-logo" alt="Sahara Logo">
-<!--<nav class="navbar navbar-dark bg-transparent py-3"><div class="container justify-content-center"><span class="navbar-brand">Sahara Mens Club</span></div>-->
-
-<div class="container py-5">
-  <div class="d-flex flex-wrap gap-2 justify-content-center mb-5 filter-btns">
-    <button class="btn active" data-filter="all"><i class="bi bi-grid-fill"></i> Todo</button>
-    <button class="btn" data-filter="cocteleria"><i class="bi bi-cup-straw"></i> Coctelería</button>
-    <button class="btn" data-filter="varios"><i class="bi bi-box-seam"></i> Varios</button>
-    <button class="btn" data-filter="whisky"><i class="bi bi-droplet-half"></i> Whisky</button>
-    <button class="btn" data-filter="ron"><i class="bi bi-egg-fried"></i> Ron</button>
-    <button class="btn" data-filter="cognac"><i class="bi bi-glass"></i> Cognac</button>
-    <button class="btn" data-filter="licores"><i class="bi bi-basket"></i> Licores</button>
-    <button class="btn" data-filter="ginebra"><i class="bi bi-flower1"></i> Ginebra</button>
-    <button class="btn" data-filter="tequila"><i class="bi bi-fire"></i> Tequila</button>
-    <button class="btn" data-filter="cerveza"><i class="bi bi-bucket"></i> Cerveza</button>
-    <button class="btn" data-filter="vodka"><i class="bi bi-snow"></i> Vodka</button>
-    <button class="btn" data-filter="mezcal"><i class="bi bi-smoke"></i> Mezcal</button></div>
-
-  <div id="menu-sections">
-    <!-- Coctelería -->
-    <section data-filter="cocteleria"><h2>Coctelería</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Coctel</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>ABC</td><td>Copa</td><td>$150</td><td>$105</td></tr><tr><td>Cielo Rojo</td><td>Copa</td><td>NA</td><td>$200</td></tr><tr><td>Long Island</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Margarita</td><td>Copa</td><td>$115</td><td>NA</td></tr><tr><td>Piña Colada</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Rey Alfonso</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Blanco</td><td>Copa</td><td>NA</td><td>$140</td></tr><tr><td>Ruso Negro</td><td>Copa</td><td>NA</td><td>$140</td></tr></tbody></table></div></section>
-    <!-- Varios -->
-    <section data-filter="varios"><h2>Varios</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Item</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Agua</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Boost</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Cigarros</td><td>—</td><td>NA</td><td>NA</td></tr><tr><td>Clamato</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Jarra de Jugo</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Michelada</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>RedBull</td><td>Botella</td><td>NA</td><td>NA</td></tr><tr><td>Refresco</td><td>Botella</td><td>NA</td><td>NA</td></tr></tbody></table></div></section>
-    <!-- Whisky -->
-    <section data-filter="whisky"><h2>Whisky</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Buchanans 12</td><td>750ML</td><td>$195</td><td>$1,950</td></tr><tr><td>Buchanans 16</td><td>750ML</td><td>$425</td><td>$4,250</td></tr><tr><td>Chivas Regal</td><td>750ML</td><td>$185</td><td>$1,850</td></tr><tr><td>Etiqueta Roja</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Etiqueta Negra</td><td>750ML</td><td>$195</td><td>$1,950</td></tr><tr><td>Etiqueta Azul</td><td>750ML</td><td>$825</td><td>$8,250</td></tr><tr><td>Jack Daniels</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Macallan 12</td><td>700ML</td><td>$345</td><td>$3,450</td></tr><tr><td>Tom Lawson’s</td><td>750ML</td><td>$130</td><td>$1,300</td></tr></tbody></table></div></section>
-    <!-- Ron -->
-    <section data-filter="ron"><h2>Ron</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Appleton State</td><td>750ML</td><td>$115</td><td>$1,150</td></tr><tr><td>Bacardi Añejo</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Bacardi Blanco</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Bacardi Solera</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Capitán Morgan</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Havana 3 Años</td><td>750ML</td><td>$125</td><td>$1,250</td></tr><tr><td>Havana 7 Años</td><td>750ML</td><td>$415</td><td>$1,450</td></tr><tr><td>Malibu Blanco</td><td>750ML</td><td>$125</td><td>$1,250</td></tr></tbody></table></div></section>
-    <!-- Cognac -->
-    <section data-filter="cognac"><h2>Cognac</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Martell VSOP</td><td>700ML</td><td>$230</td><td>$2,300</td></tr><tr><td>Hennessy VSOP</td><td>700ML</td><td>$230</td><td>$2,300</td></tr></tbody></table></div></section>
-    <!-- Licores -->
-    <section data-filter="licores"><h2>Licores</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Licor</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Amaretto</td><td>—</td><td>$175</td><td>NA</td></tr><tr><td>Anís Dulce</td><td>—</td><td>$100</td><td>NA</td></tr><tr><td>Baileys</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Jägermeister</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Kahlúa</td><td>—</td><td>$165</td><td>NA</td></tr><tr><td>Licor 43</td><td>—</td><td>$165</td><td>NA</td></tr><tr><td>Sambuca</td><td>700ML</td><td>$230</td><td>$1,300</td></tr></tbody></table></div></section>
-    <!-- Ginebra -->
-    <section data-filter="ginebra"><h2>Ginebra</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Beefeater</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Tanquerey</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Bombay</td><td>750ML</td><td>$165</td><td>$1,650</td></tr></tbody></table></div></section>
-    <!-- Tequila -->
-    <section data-filter="tequila"><h2>Tequila</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>1800 Añejo</td><td>700ML</td><td>$165</td><td>$1,650</td></tr><tr><td>1800 Cristalino</td><td>700ML</td><td>$175</td><td>$1,750</td></tr><tr><td>1800 Reposado</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Centenario Reposado</td><td>700ML</td><td>$115</td><td>$1,450</td></tr><tr><td>Centenario Plata</td><td>700ML</td><td>$255</td><td>$2,550</td></tr><tr><td>Don Julio 70</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Don Julio Blanco</td><td>750ML</td><td>$165</td><td>$1,650</td></tr><tr><td>Don Julio Reposado</td><td>700ML</td><td>$175</td><td>$1,750</td></tr><tr><td>Herradura Añejo</td><td>700ML</td><td>$155</td><td>$1,550</td></tr><tr><td>Herradura Antiguo</td><td>700ML</td><td>$155</td><td>$1,550</td></tr><tr><td>Herradura Reposado</td><td>700ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Maestro Dobel</td><td>750ML</td><td>$155</td><td>$1,550</td></tr><tr><td>Siete Leguas Tradicional</td><td>695ML</td><td>$115</td><td>$1,150</td></tr></tbody></table></div></section>
-    <!-- Cerveza -->
-    <section data-filter="cerveza"><h2>Cerveza</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Corona 1/2</td><td>355ML</td><td>$75</td><td>NA</td></tr><tr><td>Pacífico 1/2</td><td>355ML</td><td>$75</td><td>NA</td></tr><tr><td>Corona Light</td><td>355ML</td><td>$90</td><td>NA</td></tr><tr><td>Modelo Especial</td><td>355ML</td><td>$90</td><td>NA</td></tr><tr><td>Michelob Ultra</td><td>355ML</td><td>$90</td><td>NA</td></tr><tr><td>Cubeta 6 Corona 1/2</td><td>6×355ML</td><td>$375</td><td>NA</td></tr><tr><td>Cubeta 6 Corona Light</td><td>6×355ML</td><td>$450</td><td>NA</td></tr><tr><td>Cubeta 6 Modelo Especial</td><td>6×355ML</td><td>$450</td><td>NA</td></tr></tbody></table></div></section>
-    <!-- Vodka -->
-    <section data-filter="vodka"><h2>Vodka</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Absolut Azul</td><td>750ML</td><td>$145</td><td>$1,450</td></tr><tr><td>Grey Goose</td><td>750ML</td><td>$200</td><td>NA</td></tr><tr><td>Smirnoff</td><td>750ML</td><td>$145</td><td>$1,150</td></tr><tr><td>Stolichnaya</td><td>750ML</td><td>$145</td><td>$1,450</td></tr></tbody></table></div></section>
-    <!-- Mezcal -->
-    <section data-filter="mezcal"><h2>Mezcal</h2><div class="table-responsive"><table class="table table-dark table-striped table-hover"><thead><tr><th>Marca</th><th>Cont.</th><th>Copa</th><th>Botella</th></tr></thead><tbody><tr><td>Mezcal Unión</td><td>700ML</td><td>$200</td><td>$2,000</td></tr></tbody></table></div></section>
-<!-- Animación spawn (colócala en tu <style> global si aún no está) -->
-<style>
-@keyframes spawn {
-  0%   { transform: scale(0)   rotate(-5deg); opacity:0; }
-  60%  { transform: scale(1.05) rotate(3deg); opacity:1; }
-  100% { transform: scale(1)   rotate(0deg); }
-}
-</style>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({ once: true, duration: 600 });
-    const buttons = document.querySelectorAll('.filter-btns .btn');
-    const sections = document.querySelectorAll('#menu-sections section');
-    sections.forEach(sec => sec.style.display = 'none');
-    buttons.forEach(btn => btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      sections.forEach(sec => {
-        if (f === 'all' || sec.dataset.filter === f) {
-          sec.style.display = 'block';
-          sec.querySelector('table').style.animation = 'fadeInTable 0.7s ease forwards';
-        } else {
-          sec.style.display = 'none';
-        }
-      });
-    }));
-  });
-</script>
-</body>
-<footer class="text-light text-center py-4 mt-5" style="font-size: 0.9rem; background-color: rgba(0.4, 0, 0, 0.8);">
-  <div class="container">
-    <div class="mb-3">
-      <a href="https://wa.me/523221029028?text=Me%20gustaría%20reservar%20en%20Sahara" class="text-light me-3 footer-icon" target="_blank">
-        <i class="bi bi-whatsapp" style="font-size: 1.5rem;"></i>
-      </a>
-      <a href="https://www.instagram.com/sahara.mensclub?igsh=ZGJjOTlpdDFwaTdn" class="text-light me-3 footer-icon" target="_blank">
-        <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
-      </a>
-      <a href="https://www.facebook.com/share/15xFpcKhUP/" class="text-light footer-icon" target="_blank">
-        <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
-      </a>
+    <!-- Verificación de edad -->
+    <div class="age-gate" id="ageGate">
+        <h1 class="age-title">VIP SCORTS PV</h1>
+        <p class="lead mb-5">Este contenido es exclusivo para mayores de 18 años</p>
+        <div>
+            <button class="age-btn age-confirm" id="confirmAge">Soy mayor de edad</button>
+            <button class="age-btn age-exit" id="exitSite">Salir del sitio</button>
+        </div>
     </div>
-    <p class="mb-1">© 2025 MDV Corporation. Todos los derechos reservados.</p>
-    <p class="mb-1">El contenido de este sitio es confidencial y está destinado exclusivamente para uso interno.</p>
-  </div>
-</footer>
-</html>
+
+    <!-- Fondo de partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar VIP -->
+    <nav class="navbar navbar-expand-lg navbar-dark vip-nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand gold-hover" href="#">
+                <span style="font-weight: 700;">VIP</span> SCORTS PV
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#models">Modelos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shop">Experiencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Reservas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrusel VIP con todas las imágenes -->
+    <section id="home" class="elite-carousel">
+        <div id="vipCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="4"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="5"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="6"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="7"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="8"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="9"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="10"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="11"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="12"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="13"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="14"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="15"></button>
+                <button type="button" data-bs-target="#vipCarousel" data-bs-slide-to="16"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <!-- Imagen 1 -->
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/hxZWnv5k/Picsart-25-04-25-19-25-20-085.png" class="d-block w-100" alt="Modelo VIP 1">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">VALENTINA</h2>
+                        <p class="model-desc">Elegancia y sofisticación en cada detalle. Experiencia premium para clientes exclusivos.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 2 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/8gwQqxH0/IMG-20250412-WA0000.jpg" class="d-block w-100" alt="Modelo VIP 2">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">ISABELLA</h2>
+                        <p class="model-desc">Belleza internacional con un toque de misterio. Disponibilidad limitada.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 3 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/dwg890KB/IMG-20250411-WA0186.jpg" class="d-block w-100" alt="Modelo VIP 3">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">SOFÍA</h2>
+                        <p class="model-desc">Encanto natural y profesionalismo absoluto. Experiencia personalizada.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Continuar con el resto de imágenes (4-17) siguiendo el mismo patrón -->
+                <!-- Imagen 4 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/7tw3Q0Qt/IMG-20250411-WA0185.jpg" class="d-block w-100" alt="Modelo VIP 4">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">CAMILA</h2>
+                        <p class="model-desc">Seducción inteligente y conversación estimulante. Disponibilidad bajo reserva.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 5 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/mVb6zcsk/IMG-20250411-WA0184.jpg" class="d-block w-100" alt="Modelo VIP 5">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">GABRIELA</h2>
+                        <p class="model-desc">Experiencia de lujo con atención personalizada. Protocolos de discreción.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 6 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/Xfy7qh8v/IMG-20250411-WA0183.jpg" class="d-block w-100" alt="Modelo VIP 6">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">DANIELA</h2>
+                        <p class="model-desc">Elegancia europea con calidez latina. Reservas con 48h de anticipación.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 7 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/S40BFmLw/IMG-20250411-WA0181.jpg" class="d-block w-100" alt="Modelo VIP 7">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">VALERIA</h2>
+                        <p class="model-desc">Belleza clásica con actitud moderna. Experiencias memorables.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 8 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/35PMCFh6/IMG-20250411-WA0182.jpg" class="d-block w-100" alt="Modelo VIP 8">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">MARIANA</h2>
+                        <p class="model-desc">Encanto natural y profesionalismo. Disponibilidad limitada.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 9 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/S4r0ff2L/IMG-20250410-WA0161.jpg" class="d-block w-100" alt="Modelo VIP 9">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">ALEJANDRA</h2>
+                        <p class="model-desc">Elegancia y sofisticación en cada detalle. Experiencia premium.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 10 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/VpLkkDk2/IMG-20250410-WA0162.jpg" class="d-block w-100" alt="Modelo VIP 10">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">CAROLINA</h2>
+                        <p class="model-desc">Belleza internacional con un toque de misterio. Disponibilidad exclusiva.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 11 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/0ypS4H9q/IMG-20250410-WA0156.jpg" class="d-block w-100" alt="Modelo VIP 11">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">FERNANDA</h2>
+                        <p class="model-desc">Seducción inteligente y conversación estimulante. Protocolos VIP.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 12 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/ZRPF7vkL/IMG-20250410-WA0158.jpg" class="d-block w-100" alt="Modelo VIP 12">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">ANTONELLA</h2>
+                        <p class="model-desc">Experiencia de lujo con atención personalizada. Reservas anticipadas.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 13 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/S7GFj9ry/IMG-20250410-WA0159.jpg" class="d-block w-100" alt="Modelo VIP 13">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">JULIETA</h2>
+                        <p class="model-desc">Elegancia europea con calidez latina. Disponibilidad limitada.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 14 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/93gxn1Dv/IMG-20250410-WA0152.jpg" class="d-block w-100" alt="Modelo VIP 14">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">LUCÍA</h2>
+                        <p class="model-desc">Belleza clásica con actitud moderna. Experiencias exclusivas.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 15 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/sdHC61d2/file-00000000ef4061f8a107c9109749ad42.png" class="d-block w-100" alt="Modelo VIP 15">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">PAULA</h2>
+                        <p class="model-desc">Encanto natural y profesionalismo absoluto. Protocolos de discreción.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 16 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/vtBY5B5/IMG-20250410-WA0142.jpg" class="d-block w-100" alt="Modelo VIP 16">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">ROMINA</h2>
+                        <p class="model-desc">Elegancia y sofisticación en cada detalle. Experiencia premium.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+                
+                <!-- Imagen 17 -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="https://i.ibb.co/yB0Gy2qY/IMG-20250410-WA0150.jpg" class="d-block w-100" alt="Modelo VIP 17">
+                    <div class="carousel-caption">
+                        <h2 class="model-name">VICTORIA</h2>
+                        <p class="model-desc">Belleza internacional con un toque de misterio. Disponibilidad exclusiva.</p>
+                        <button class="btn btn-gold">Reservar ahora</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#vipCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#vipCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="closeLightbox">&times;</span>
+            <img src="" alt="" id="lightboxImage" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Sección Shop -->
+    <section id="shop" class="shop-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">EXPERIENCIAS VIP</h2>
+            
+            <div class="row">
+                <!-- Card WHITE -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-badge">EXCLUSIVO</div>
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="WHITE Experience">
+                        <div class="card-body">
+                            <h3 class="card-title">WHITE</h3>
+                            <p class="card-text">Experiencia clásica de lujo con nuestras modelos más solicitadas.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> 4 horas de compañía</li>
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> Selección premium</li>
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> Protocolos de discreción</li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h4 text-gold">$1,500 USD</span>
+                                <button class="btn btn-gold btn-sm">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card GREEN -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="product-badge">ELITE</div>
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="GREEN Experience">
+                        <div class="card-body">
+                            <h3 class="card-title">GREEN</h3>
+                            <p class="card-text">Paquete premium con acceso a modelos internacionales y eventos.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> 8 horas de compañía</li>
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> Modelos internacionales</li>
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> Transporte VIP incluido</li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h4 text-gold">$3,500 USD</span>
+                                <button class="btn btn-gold btn-sm">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card SCOMPANY -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="product-badge">VIP</div>
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="SCOMPANY Experience">
+                        <div class="card-body">
+                            <h3 class="card-title">SCOMPANY</h3>
+                            <p class="card-text">Experiencia definitiva con servicio las 24 horas y destinos exclusivos.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> 24 horas de compañía</li>
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> Viajes internacionales</li>
+                                <li><i class="bi bi-check-circle-fill text-gold me-2"></i> Asistente personal</li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h4 text-gold">$8,000 USD</span>
+                                <button class="btn btn-gold btn-sm">Reservar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Reservas -->
+    <section id="contact" class="py-5 bg-dark">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="booking-form" data-aos="zoom-in">
+                        <h2 class="text-center mb-4">RESERVA PRIVADA</h2>
+                        <form id="reservationForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Nombre completo" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <select class="form-control" required>
+                                        <option value="" disabled selected>Seleccione experiencia</option>
+                                        <option value="WHITE">WHITE - $1,500 USD</option>
+                                        <option value="GREEN">GREEN - $3,500 USD</option>
+                                        <option value="SCOMPANY">SCOMPANY - $8,000 USD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Detalles adicionales (fechas, preferencias, etc.)"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-gold px-5">ENVIAR SOLICITUD</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-black text-center">
+        <div class="container">
+            <h2 class="vip-title mb-3">VIP SCORTS PV</h2>
+            <p class="text-muted">Servicio exclusivo para clientes exigentes | +57 322 378 2693</p>
+            <p class="small text-muted">© 2023 Black Diamond Club. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Verificación de edad
+        document.getElementById('confirmAge').addEventListener('click', function() {
+            document.getElementById('ageGate').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            localStorage.setItem('ageVerified', 'true');
+        });
+        
+        document.getElementById('exitSite').addEventListener('click', function() {
+            window.location.href = 'https://www.google.com';
+        });
+        
+        // Verificar si ya se confirmó la edad
+        if(localStorage.getItem('ageVerified') === 'true') {
+            document.getElementById('ageGate').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Inicializar AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Configurar partículas
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#FFD700"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#FFD700",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+
+// Configurar partículas
+particlesJS("particles-js", {
+    "particles": {
+        "number": {
+            "value": 80,
+            "density": {
+                "enable": true,
+                "value_area": 800
+            }
+        },
+        "color": {
+            "value": "#FFD700"
+        },
+        "shape": {
+            "type": "circle",
+            "stroke": {
+                "width": 0,
+                "color": "#000000"
+            }
+        },
+        "opacity": {
+            "value": 0.5,
+            "random": true,
+            "anim": {
+                "enable": true,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+            }
+        },
+        "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+                "enable": true,
+                "speed": 2,
+                "size_min": 0.1,
+                "sync": false
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#FFD700",
+            "opacity": 0.4,
+            "width": 1
+        },
+        "move": {
+            "enable": true,
+            "speed": 1,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+                "enable": true,
+                "rotateX": 600,
+                "rotateY": 1200
+            }
+        }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": {
+                "enable": true,
+                "mode": "grab"
+            },
+            "onclick": {
+                "enable": true,
+                "mode": "push"
+            },
+            "resize": true
+        },
+        "modes": {
+            "grab": {
+                "distance": 140,
+                "line_linked": {
+                    "opacity": 1
+                }
+            },
+            "push": {
+                "particles_nb": 4
+            }
+        }
+    },
+    // Detectar pantalla retina
+    retina_detect: true
+});
